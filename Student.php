@@ -53,17 +53,42 @@ class Student
 
         if ($queryResult = mysqli_query($link, $sql)) {
             return $queryResult;
-
-            //process to get data
+            ////////////////////////////////////////////////////////////
+            //process to get data which is used in inde file
             // while ($student = mysqli_fetch_assoc($queryResult)){
                  
             // echo '<pre>';
             // print_r($student);
             // }
+            ///////////////////////////////////////////////////////////
             
         } else {
             die("Query Problem" . mysqli_error($link));
         }
+    }
+
+
+
+    public function getStudentInfoById($id){
+        $link = mysqli_connect($host = 'localhost', $user = 'root', $password = '', $database = 'student');
+        $sql = "SELECT * FROM tbl_students WHERE student_id = '$id' ";
+
+        if ($queryResult = mysqli_query($link, $sql)) {
+            return $queryResult;
+        } else {
+            die("Query Problem" . mysqli_error($link));
+        }
+    }
+
+    public function updateStudentInfo(){
+        extract($_POST);
+        $link = mysqli_connect($host='localhost',$user='root',$password='',$database='student');
+        $sql = "UPDATE tbl_students SET name = '$name', email = '$email', mobile = '$mobile' WHERE student_id ='$id' ";
+        if (mysqli_query($link, $sql)) {
+            header('location:viewstudent.php');  
+        } else {
+            die ('Query Problem'.mysqli_error($link));
+        } 
     }
 
 }
