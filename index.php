@@ -1,43 +1,38 @@
 <?php
-    require_once './vendor/autoload.php';
-    use App\classes\UserInputOutput;
+require_once './vendor/autoload.php';
+use App\classes\Student;
 
-    $result=[];
-    if (isset($_POST['btn'])) {
-        $userInputOutput = new UserInputOutput();
-        $result =$userInputOutput->inputOutputNumber();
-    } else {
-        $result=[
-            'first_number' => 0,
-            'second_number' => 0,
-            'third_number' => 0,
-            'fourth_number' => 0,
-            'fifth_number' => 0
-        ];
-    }
+$message = '';
+if (isset($_POST['btn'])) {
+    $student = new Student();
+    $message = $student->saveStudentInfo();
+}
 ?>
+
+<a href="index.php">Add Student</a>
+
+<a href="viewstudent.php">View Student</a>
+
+<hr>
+
+
+
+
+<h2><?php echo $message; ?></h2>
 
 <form action="" method="POST">
     <table>
         <tr>
-            <th>First Number</th>
-            <td><input type="number" name="first_number"/></td>
+            <th>Name :</th>
+            <td><input type="text" required name="name"/></td>
         </tr>
         <tr>
-            <th>Second Number</th>
-            <td><input type="number" name="second_number"/></td>
+            <th>Email Address :</th>
+            <td><input type="email" required name="email"/></td>
         </tr>
         <tr>
-            <th>Third Number</th>
-            <td><input type="number" name="third_number"></td>
-        </tr>
-        <tr>
-            <th>Fourth Number</th>
-            <td><input type="number" name="fourth_number"/></td>
-        </tr>
-        <tr>
-            <th>Fifth Number</th>
-            <td><input type="number" name="fifth_number"/></td>
+            <th>Mobile Number :</th>
+            <td><input type="number" required name="mobile"></td>
         </tr>
         <tr>
             <th></th>
@@ -45,32 +40,3 @@
         </tr>
     </table>
 </form>
-
-
-<hr>
-<table border="1" width="900px">
-    <tr>
-        <th>First Number</th>
-        <th>Second Number</th>
-        <th>Third Number</th>
-        <th>Fourth Number</th>
-        <th>Fifth Number</th>
-        <th>Sum Result</th>
-    </tr>
-    <tr>
-        <td><?php echo $result['first_number'];?></td>
-        <td><?php echo $result['second_number'];?></td>
-        <td><?php echo $result['third_number'];?></td>
-        <td><?php echo $result['fourth_number'];?></td>
-        <td><?php echo $result['fifth_number'];?></td>
-        <td><?php 
-        $sum = 0;
-        foreach ($result as $value)
-        if ($value!='submit') {
-            $sum += $value;
-        }
-        echo $sum;
-        ?></td>
-
-    </tr>
-</table>
