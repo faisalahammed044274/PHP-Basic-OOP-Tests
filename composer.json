@@ -1,13 +1,12 @@
 {
-    "name": "setuf/day-5",
-    "description": "This is first composer setup in Laravel Vue.js project",
+    "name": "setuf/day-6",
+    "description": "this is day 6",
     "keywords": [],
     "license": "",
     "require": {},
     "require-dev": {},
     "autoload": {
         "classmap": [],
-        "psr-4": {"App\\":"app//"}
+        "psr-4": { "App\\":"app//"}
     }
-
 }
