@@ -1,69 +1,76 @@
 <?php
-require_once './vendor/autoload.php';
-use App\classes\Series;
-$series = new Series();
+    require_once './vendor/autoload.php';
+    use App\classes\UserInputOutput;
 
-//$result =' ';
-$result = [];
-$result2 = [];
-
-if (isset($_POST['btn'])) {
-    $result = $series->createSeries();
-}
-
-if (isset($_POST['btn1'])) {
-    $result2 = $series->findWordCharacter();
-}
-
+    $result=[];
+    if (isset($_POST['btn'])) {
+        $userInputOutput = new UserInputOutput();
+        $result =$userInputOutput->inputOutputNumber();
+    } else {
+        $result=[
+            'first_number' => 0,
+            'second_number' => 0,
+            'third_number' => 0,
+            'fourth_number' => 0,
+            'fifth_number' => 0
+        ];
+    }
 ?>
-<form action="" method="post">
-    <tr>
-        <th>Enter your string</th>
-        <td><input type="text" size="60" name="given_string"></td>
-    </tr>
-    <tr>
-        <th>Total number of word</th>
-        <td><input type="text" value="<?php echo $result2['total_word']; ?>"></td>
-    </tr>
-    <tr>
-        <th>Total number of character</th>
-        <td><input type="text" value="<?php echo $result2['total_character']; ?>"></td>
-    </tr>
-    <tr>
-        <th></th>
-        <td><input type="submit" name="btn1" value="Submit" /></td>
-    </tr>
-</form>
-
-<div></div>
-<hr>
 
 <form action="" method="POST">
     <table>
         <tr>
-            <th>Starting Number</th>
-            <td><input type="number" name="starting_number" /></td>
+            <th>First Number</th>
+            <td><input type="number" name="first_number"/></td>
         </tr>
         <tr>
-            <th>Ending Number</th>
-            <td><input type="number" name="ending_number" /></td>
+            <th>Second Number</th>
+            <td><input type="number" name="second_number"/></td>
         </tr>
         <tr>
-            <th>Your Choice</th>
-            <td>
-                <input type="radio" name="choice" value="odd" /> Odd
-                <input type="radio" name="choice" value="even" /> Even
-            </td>
+            <th>Third Number</th>
+            <td><input type="number" name="third_number"></td>
         </tr>
         <tr>
-            <th>Result</th>
-            <td><textarea rows="5" cols="40"><?php foreach ($result as $value) {
-                                                    echo $value . ' ';
-                                                } ?></textarea></td>
+            <th>Fourth Number</th>
+            <td><input type="number" name="fourth_number"/></td>
+        </tr>
+        <tr>
+            <th>Fifth Number</th>
+            <td><input type="number" name="fifth_number"/></td>
         </tr>
         <tr>
             <th></th>
-            <td><input type="submit" name="btn" value="submit" /></td>
+            <td><input type="submit" name="btn" value="submit"/></td>
         </tr>
     </table>
 </form>
+
+
+<hr>
+<table border="1" width="900px">
+    <tr>
+        <th>First Number</th>
+        <th>Second Number</th>
+        <th>Third Number</th>
+        <th>Fourth Number</th>
+        <th>Fifth Number</th>
+        <th>Sum Result</th>
+    </tr>
+    <tr>
+        <td><?php echo $result['first_number'];?></td>
+        <td><?php echo $result['second_number'];?></td>
+        <td><?php echo $result['third_number'];?></td>
+        <td><?php echo $result['fourth_number'];?></td>
+        <td><?php echo $result['fifth_number'];?></td>
+        <td><?php 
+        $sum = 0;
+        foreach ($result as $value)
+        if ($value!='submit') {
+            $sum += $value;
+        }
+        echo $sum;
+        ?></td>
+
+    </tr>
+</table>
