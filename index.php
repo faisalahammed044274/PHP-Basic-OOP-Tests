@@ -11,7 +11,7 @@ if (isset($_POST['btn'])) {
 
 <a href="index.php">Add Student</a>
 
-<a href="viewstudent.php">View Student</a>
+<a href="view-student.php">View Student</a>
 
 <hr>
 

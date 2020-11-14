@@ -85,10 +85,35 @@ class Student
         $link = mysqli_connect($host='localhost',$user='root',$password='',$database='student');
         $sql = "UPDATE tbl_students SET name = '$name', email = '$email', mobile = '$mobile' WHERE student_id ='$id' ";
         if (mysqli_query($link, $sql)) {
-            header('location:viewstudent.php');  
+            header('location:view-student.php');  
         } else {
             die ('Query Problem'.mysqli_error($link));
         } 
+    }
+
+    public function deleteStudentInfo($id){
+        $link = mysqli_connect($host='localhost',$user='root',$password='',$database='student');
+        $sql = "DELETE FROM tbl_students WHERE student_id = '$id' ";
+        if (mysqli_query($link,$sql)) {
+            header('location:view-student.php');
+        }   else {
+            die ('Deletion Error'.mysqli_error($link));
+        }
+    }
+
+    public function searchStudentInfoBySearchText(){
+        extract($_POST);
+        $link = mysqli_connect($host='localhost', $user='root',$password='',$database='student');
+        // $sql = "SELECT * FROM tbl_students WHERE name = '$search_text'"; // Search with Exact name
+        // $sql = "SELECT * FROM tbl_students WHERE name LIKE '$search_text%'"; //First Letter position wildcards
+        // $sql = "SELECT * FROM tbl_students WHERE name LIKE '%$search_text'"; // Last letter positon wildcards
+        // $sql = "SELECT * FROM tbl_students WHERE name LIKE '%$search_text%'"; // Any letter positon wildcards
+        $sql = "SELECT * FROM tbl_students WHERE name LIKE '%$search_text%' || email LIKE '%$search_text%' || mobile LIKE '%$search_text%'"; // Any letter positon wildcards
+        if ($queryResult = mysqli_query($link, $sql)) {
+            return $queryResult;
+        } else {
+            die ('Query Problem in search'.mysqli_error($link));
+        }
     }
 
 }
