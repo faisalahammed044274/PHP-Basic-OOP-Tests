@@ -1,8 +1,16 @@
 <?php
+
+session_start();
+
+if ($_SESSION['id'] == null) {
+    header('Location: index.php');
+}
+
 require_once './vendor/autoload.php';
 use App\classes\Student;
+use App\classes\Login;
 
-$student = new student();
+$student = new Student();
 $queryResult = $student->getAllStudentInfo();
 
 if(isset($_GET['status'])){
@@ -15,10 +23,17 @@ if (isset($_POST['btn'])) {
     // print_r($queryResult);
 }
 
+if (isset($_GET['logout'])) {
+    $login = new Login();
+    $login->logout();
+}
+
 ?>
 <hr>
-    <a href="index.php">Add Student</a>
-    <a href=" view-student.php">View Student</a>
+    <a href="dashboard.php">Add Student</a> ||
+    <a href=" view-student.php">View Student</a> ||
+    <a href="?logout=true">Logout</a> ||
+    <a href=""><?php echo $_SESSION['name']; ?></a>
 <hr>
 
 <hr/>

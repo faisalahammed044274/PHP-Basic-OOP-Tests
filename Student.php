@@ -38,7 +38,7 @@ class Student
         //    } else{
         //        die("Problem".mysqli_error($link));
         //    }
-        {}
+        //{}
     }
 
     public function getAllStudentInfo()
