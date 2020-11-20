@@ -1,11 +1,15 @@
 {
-    "name": "setuf/inputoutput",
-    "description": "This is the first project of oop just used user input outtput",
-    "keywords": [],
-    "require": {},
-    "require-dev": {},
+    "name": "setu/testautoload",
+    "description": "testing of autoload",
+    "require": {
+        "dompdf/dompdf": "^0.8.6"
+    },
     "autoload": {
-        "classmap": [],
-        "psr-4": {"App\\":"app/"}
+        "psr-4": {
+            "Product\\Cool\\": "Items/",
+            "Product\\":"Items",
+            "Food\\": "Items"
+
+        }
     }
 }
