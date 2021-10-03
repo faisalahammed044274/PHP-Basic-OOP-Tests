@@ -1,1 +1,1 @@
-# laravel-vue
+# laravel-vue course
